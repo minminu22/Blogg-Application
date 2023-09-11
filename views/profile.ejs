@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+<div id="container">
+  <a href="/"><i class="ri-arrow-left-line"></i>Go To Homepage</a>
+  <div class="left">
+
+    <!-- <video id="video" width="100" height="100" autoplay></video>
+    <button id="snap">Take Photo</button>
+    <canvas id="canvas" ></canvas> -->
+
+      <div id="prfimg" class="image">
+          <form enctype="multipart/form-data" id="imageform" action="/upload" method="post">
+          <input  type="file" name="image">
+        </form>
+          <img src=<%= details.profileImage %> alt="">
+          <div class="overlayimg">
+            <i class="ri-add-circle-fill"></i>
+          </div>
+      </div>
+      <h2><%= details.name %></h2>
+      <h4><%= details.email %></h4>
+      <div id="prficons">
+        <a href=<%= '/update/'+details.username %>><i class="ri-pencil-line"></i>Edit Profile</a>
+      </div>  
+  </div>
+  <div class="right">
+      <h1>All Posts</h1>
+      <form action="/postblog" method="post" onsubmit=" return validatePost()">
+          <textarea name="post" id="postfield" placeholder="Write Your Post Here"></textarea>
+          <button type="Submit">POST IT</button>
+      </form>
+      <div class="posts">
+          <% if(details.posts.length < 1 ){ %>
+              <h>No Post Available !</h>
+          <% } else { %>
+            <% details.posts.reverse().forEach(function(post){ %>
+              <div class="post">
+                <div class="top">
+                    <div class="simg">
+            <img src=<%= details.profileImage %>
+             alt="">
+                    </div>
+                    <h3><%= details.name %></h3> 
+                    <small style="margin-left: 250px;" ><%= post.ti %></span></small>        
+                </div>
+                
+                <p><%= post.post %></p>
+                <div class="post-time">${formattedDate}</div>
+                <div style="background-color: red;" class="icons">
+                  <a href=<%= '/delete/'+post._id%> style="margin-left: 15px;"><i class="ri-chat-delete-fill"></i></a>
+                </div>
+            </div> 
+            <% }) %>
+          <% } %>
+      </div>
+  </div>
+</div>
+
+<script>
+  // let canvas = document.querySelector('#canvas');
+  // let context = canvas.getContext('2d');
+  // let video = document.querySelector('#video');
+  // let snap = document.querySelector('#snap');
+
+  var postTimes = document.querySelectorAll('.post-time');
+
+postTimes.forEach(function(postTime) {
+  var currentDate = new Date();
+  postTime.textContent = 'Posted on ' + currentDate.toLocaleString();
+});
+ 
+var prfimg = document.querySelector('#prfimg');
+var imageform = document.querySelector('#imageform');
+var inputFile = document.querySelector('#imageform input');
+
+// if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+//     navigator.mediaDevices.getUserMedia({video: true}).then(Stream => {
+//       video.srcObject = Stream;
+//       video.play();
+//     })
+//   }
+
+prfimg.addEventListener('click', function(){
+
+    inputFile.click();
+})
+
+inputFile.addEventListener('change', function(){
+   imageform.submit();
+   alert('Image Successfully Uploaded !');
+})
+
+// var dt = new Date();
+// document.getElementById('date-time').innerHTML=dt;
+
+function validatePost() {
+    var postContent = document.getElementById("postfield").value;
+    if (postContent.trim() === "") {
+        alert("Please write something in the textarea.");
+        return false;  
+        }
+    return true; 
+}
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheets/register.css">
+</head>
+<body>
+   <div id="center">
+    <a href="/profile"><i class="ri-arrow-left-line"></i>Need Not To Update ?, Go Back</a>
+    <form action="/update" method="POST">
+    <div class="formlm">
+        <label for="name">Full Name</label>
+        <input minlength="3" type="text" id="name" name="name" required placeholder="name" value=<%= details.name %>>
+    </div>
+    <div class="formlm">
+        <label for="username">username</label>
+        <input minlength="3" type="text" id="username" name="username"  placeholder="username" required value=<%= details.username %>>
+    </div>
+    <div class="formlm">
+        <label for="Email">Email</label>
+        <input type="text" id="email" name="email" pattern=".+@gmail\.com"
+        title="Please provide only a My Company email address" required placeholder="Email" value=<%= details.email %>>
+    </div>
+    <div class="formlm">
+        <input id="update" type="submit" value="Update My Account">
+    </div>
+    </form>
+   </div>
+
+   <script>
+     var update = document.querySelector('#update');
+
+     update.addEventListener('click', function(){
+         alert('Profile Updated !')
+     })
+
+
+   </script>
+</body>
+</html>

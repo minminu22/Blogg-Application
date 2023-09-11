@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../stylesheets/register.css">
+</head>
+<body>
+   <div id="center">
+    <a href="/login"><i class="ri-arrow-left-line"></i>Already have an account ?</a>
+    <form action="/register" method="POST">
+    <div class="formlm">
+        <label for="name">Full Name</label>
+        <input minlength="5" type="text" id="name" name="name" required placeholder="name">
+    </div>
+    <div class="formlm">
+        <label for="username">username</label>
+        <input minlength="5" type="text" id="username" name="username" placeholder="username" required="username">
+    </div>
+    <div class="formlm">
+        <label for="Email">Email</label>
+        <input type="text" id="email" name="email" pattern=".+@gmail\.com"
+        title="Please provide only a My Company email address" required placeholder="Email">
+    </div>
+    <div class="formlm">
+        <label for="password">password</label>
+        <input minlength="5" type="password" id="password" name="password" required ="password">
+    </div>
+    <div class="formlm">
+        <input id = "reg" type="submit" value="Register My Account">
+    </div>
+    </form>
+   </div>
+   <script>
+    var update = document.querySelector('#reg');
+
+    update.addEventListener('click', function(){
+        alert('Account Created !');
+    })
+
+
+  </script>
+</body>
+</html>

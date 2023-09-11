@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bloggy</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="../stylesheets/style.css">
+</head>
+
+<body>
+  <% if(messages.info){ %>
+    <div id="notify">
+      <h4>Like Just Added !</h4>
+    </div>
+  <% } %>
+  <div id="home">
+<div id="nav">
+<a href="/">blogg</a>
+<div id="links">
+  <a href="/blogs" me> All Blogs By User</a>
+  <a href="/featured">(Updated) Featured Blogs</a>
+</div>
+<% if(loggedIn === true){ %>
+  <a class="logOutBtn" href="/logout">Log Me Out</a> 
+  <a class="logOutBtn" href="/profile">Back To Profile</a> 
+  <% } else{ %>
+    <div id="btns">
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+    </div>
+  <% } %>
+</div>
+<div id="content">
+  <h1>Hey User ,  we've something really<br> good for you,<span id ="tdy">today .</span></h1>
+  <a href="#">Explore More <i class="ri-arrow-right-line"></i></a>
+  <div id="menu">
+    <div id="extra">
+     <div class="catg ">
+      <i class="ri-heart-line"></i><h4>Liked Post</h4>
+     </div>
+     <div class="catg">
+      <i class="ri-quill-pen-line"></i><h4>Recent Post</h4>
+     </div>
+     <div class="catg">
+      <i class="ri-user-heart-fill"></i><h4>New User</h4>
+     </div>
+    </div>
+    <div class="main">
+      <% if(results !== undefined){ %>
+      <% results.forEach(function(result){ %>
+        <div class="blogexample">
+          <div class="pic">
+            <img src="<%= result.author.profileImage %>" alt="">
+          </div>
+          <div class="content">
+            <h3 style="font-weight: 600; font-size: 14px;"><%= result.author.name%></h3>
+            <h5><%=  %></h5>
+            <p style="font-size: 14px;"><%= result.post %></p>
+            <div class="icons" style="margin-top: 20px;">
+              <p style="font-size: 18px;">likes ( 0 )  </p> 
+              <p style="font-size: 18px; margin-left: 20px;"> dislikes ( 0 )</p>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <a class="randomblog">No Post Available !</a>
+    <% } %>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
